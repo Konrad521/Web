@@ -1,0 +1,12 @@
+﻿@using WebApplication1.Models
+@using WebApplication1.Extensions
+@model Osoba
+
+@{
+    ViewBag.Title = Model.Imie + " " + Model.Nazwisko;
+}
+
+<h2>@Model.ToString()</h2>
+
+@Html.Img(Model.Zdjecie,300,300)
+

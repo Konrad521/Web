@@ -1,0 +1,30 @@
+﻿@using WebApplication1.Controllers
+@using WebApplication1.Models
+<div id="Mails">
+    @Html.Action("Mails")
+    
+
+</div>
+
+@using (Ajax.BeginForm("Mails", "MailAdress", new AjaxOptions { UpdateTargetId = "Mails", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }))
+{
+    
+    @Html.TextBox("Adres")
+    <input type="submit" value="Dodaj" /><br />
+    
+}
+<br />
+<div>
+    @using (Html.BeginForm("WyslijMail_Click", "MailAdress"))
+    {
+    @model Email
+
+    <text>Temat Emaila</text> <br />
+    @Html.TextBoxFor(model => model.Subject) 
+    <input type="submit" name="Wyslij" value="Wyślij" /> <br />
+    <text>Treść Emaila</text> <br />
+    @Html.TextAreaFor(model => model.Body)
+    }
+</div>
+
+

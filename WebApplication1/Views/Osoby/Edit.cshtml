@@ -1,0 +1,32 @@
+﻿@using WebApplication1.Models;
+@model Osoba
+    
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    <div style="color:red">
+        @Html.ValidationSummary()
+    </div>
+
+    @Html.HiddenFor(m=>m.ID)
+    @Html.LabelFor(m=>m.Imie)
+    @Html.TextBoxFor(m=>m.Imie)
+    <br/>
+    @Html.LabelFor(m => m.Nazwisko)
+    @Html.TextBoxFor(m => m.Nazwisko)
+    <br/>
+    @Html.LabelFor(m => m.Wiek)
+    @Html.TextBoxFor(m => m.Wiek,new { type= "number" })
+    <br />
+    @Html.LabelFor(m => m.Zdjecie)
+    @Html.TextBoxFor(m => m.Zdjecie)
+    <br />
+    <button type="submit">Zapisz</button>
+
+}
+

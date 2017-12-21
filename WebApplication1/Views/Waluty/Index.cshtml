@@ -1,0 +1,38 @@
+﻿@using WebApplication1.Models
+@using  WebApplication1.Extensions
+@using WebApplication1.Controllers
+@model FixerAPIModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+@Html.DropDownList("kod", new List<SelectListItem>()
+{
+    new SelectListItem() { Value="PLN", Text="PLN" },
+    new SelectListItem() { Value="USD", Text="USD" },
+    new SelectListItem() { Value="CHF", Text="CHF" },
+
+})
+
+<button type="submit">Zmień</button>
+}
+@Model.bazowa z dnia: @Model.date.ToShortDateString()
+
+
+
+@Html.UlDictionary(Model.rates)
+
+
+    <input id="usd" type="number" />
+@Html.DropDownList("kod1", new List<SelectListItem>()
+{
+    new SelectListItem() { Value="EUR", Text="EUR" },
+    new SelectListItem() { Value="USD", Text="USD" },
+    new SelectListItem() { Value="CHF", Text="CHF" },
+
+})
+<input id="pln" readonly="true" />PLN <input type="button" value="Przelicz" onclick="przelicz()" />
+

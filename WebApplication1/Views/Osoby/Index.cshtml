@@ -1,0 +1,94 @@
+﻿@using WebApplication1.Models
+@using WebApplication1.Controllers
+@using WebApplication1.Extensions
+
+@model List<Osoba>
+
+<body style="background: @Session["color"]">
+    <h2>@ViewData["ObecnyTytul"]</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.DropDownList("pole", new List<SelectListItem>()
+    {
+        new SelectListItem() { Value="ID", Text="ID" },
+        new SelectListItem() { Value = "Imie", Text = "Imie" },
+        new SelectListItem() { Value = "Nazwisko", Text = "Nazwisko" },
+        new SelectListItem() { Value = "Wiek", Text = "Wiek" },
+    })
+        <button type="submit">Sortuj</button>
+    }
+
+
+    <ul>
+
+        @if (Model != null)
+        {
+
+            foreach (Osoba o in Model)
+            {
+                <li onclick="show(@o.ID)">
+                    @o.ToString()
+                    @Html.ActionLink("Dodaj nieruchomość", "Add", "Nieruchmosc", new { IDOsoby = o.ID }, null)
+                    @Html.ActionLink("Szczegóły", "Details", new { IDOsoby = o.ID }, null)
+                    @Html.ActionLink("Edytuj", "Edit", new { id = o.ID }, null)
+                    @Html.ActionLink("Usuń", "Remove", new { ID = o.ID })
+                    <br />
+                    <div id="d_@o.ID"></div>
+                </li>
+
+            }
+
+        }
+
+        <div id="partial"></div>
+
+    </ul>
+
+    @Html.ActionLink("Dodaj", "Add")
+    @*@Html.ActionLink("Sortuj według ID", "Index", new { pole = "ID" })
+        @Html.ActionLink("Sortuj według Imie", "Index", new { pole = "Imie" })
+        @Html.ActionLink("Sortuj według Nazwisko", "Index", new { pole = "Nazwisko" })
+        @Html.ActionLink("Sortuj według Wiek", "Index", new { pole = "Wiek" })*@
+
+    @*@Html.UlUniversal(Model)*@
+
+    @using (Html.BeginForm("Import", "Osoby", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" />
+        <input type="submit" value="upload" />
+    }
+
+    <script>
+
+    function show(id) {
+        $.ajax({
+            url: "@Url.Action("GetNieruchomosci", "Nieruchmosc")",
+            data: { IDOsoby: id },
+            method: "GET",
+            success: function (data) {
+                var text = "";
+                if (data) {
+                    console.log("aaa");
+                    $.each(data, function (i, el) {
+                        text += el.Nazwa + "<a href='" + "@Url.Action("Map", "Nieruchmosc")" + "?ID="+el.ID +"'>pokaż</a><button onclick='pobierzPartial("+ el.ID + ")'>Partial</button>";
+                    });
+
+                    $('#d_' + id).html(text);
+                }
+            }
+        });
+    }
+
+    function pobierzPartial(id) {
+         $.ajax({
+            url: "@Url.Action("MapPartial", "Nieruchmosc")",
+            data: { ID: id },
+            method: "GET",
+            success: function (data) {
+                $("#partial").html(data);
+            }
+        });
+    }
+
+    </script>
+</body>

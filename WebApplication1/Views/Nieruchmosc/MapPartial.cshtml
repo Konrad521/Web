@@ -1,0 +1,20 @@
+﻿@using WebApplication1.Models
+@model Nieruchomosc
+
+@{
+    ViewBag.Title = "MapPartial";
+}
+
+<h2>@Model.Nazwa</h2>
+<div>@Model.Adres</div>
+
+<div id="map" style="width: 500px; height: 500px"></div>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoNo_TOHTK6n-Yq95_CqaF8gB95EWl2lM&callback=initMap">
+</script>
+<script>
+    localStorage.setItem("lat","@Model.lat.ToString().Replace(",", ".")" )
+    localStorage.setItem("lng", "@Model.lng.ToString().Replace(",", ".")" )
+</script>
+

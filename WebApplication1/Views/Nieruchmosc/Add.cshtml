@@ -1,0 +1,25 @@
+﻿@using WebApplication1.Models
+@model  Nieruchomosc
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+@using (Html.BeginForm())
+{ 
+@Html.HiddenFor(m => m.IDOsoby)
+
+@Html.LabelFor(m => m.Nazwa)
+@Html.TextBoxFor(m => m.Nazwa)
+<br />
+@Html.LabelFor(m => m.Adres)
+@Html.TextBoxFor(m => m.Adres)
+<br />
+@Html.LabelFor(m => m.lat)
+@Html.TextBoxFor(m => m.lat)
+    <br />
+ @Html.LabelFor(m => m.lng)
+ @Html.TextBoxFor(m => m.lng)
+<button type="submit">Zapisz</button>
+}
+

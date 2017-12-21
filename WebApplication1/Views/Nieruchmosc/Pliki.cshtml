@@ -1,0 +1,12 @@
+﻿@model List<string>
+
+<h3>Dostępne pliki:</h3>
+<ul>
+    @foreach (var p in Model)
+    {
+        <li>
+            @Html.ActionLink(p, "PobierzPlik", "Nieruchmosc",new { ID = ViewBag.IDN, nazwa = p },null) 
+            @Html.ActionLink("usuń", "UsunPlik", "Nieruchmosc", new { ID = ViewBag.IDN, nazwa = p }, null)
+        </li>
+    }
+</ul>

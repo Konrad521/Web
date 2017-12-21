@@ -1,0 +1,20 @@
+﻿@using WebApplication1.Models
+@using WebApplication1.Controllers
+@model int
+
+@{
+    ViewBag.Title = "Map";
+}
+
+
+@Html.Action("MapPartial", new { ID = Model})
+
+
+@using (Html.BeginForm("UploadFile", "Nieruchmosc", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" name="ID" value="@Model"/>
+    <input type="file" name="file"/>
+    <input type="submit" value="upload"/>
+}
+
+@Html.Action("Pliki", new { ID = Model })

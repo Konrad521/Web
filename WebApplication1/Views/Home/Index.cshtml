@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("SetColor","Home"))
+{
+    <input type="color" value="@Session["color"]" name="color" />
+    <input type="submit" value="Zapisz"/>
+} 

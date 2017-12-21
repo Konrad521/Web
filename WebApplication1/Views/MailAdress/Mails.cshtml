@@ -1,0 +1,18 @@
+﻿@using WebApplication1.Models
+@using WebApplication1.Extensions
+@model IEnumerable<MailAdress>
+    @*
+    <ul>
+        @foreach (var a in Model)
+        {
+            <li>@a.Adres
+                @Html.ActionLink("Usuń", "Remove", new { ID = a.ID })
+        </li>
+        }
+    </ul>
+*@
+@Html.Ul(Model)
+
+<div>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+@Html.UlUniversal(Model)
+

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title — moja aplikacja platformy ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/mapScript.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/nasze")
+</head>
+<body style="background: @Session["color"]">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Nazwa aplikacji", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Osoby", "Index", "Osoby")</li>
+                    <li>@Html.ActionLink("Adresy Email", "Index", "MailAdress")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            @{ 
+                string os = "";
+
+                if (Request.UserAgent.IndexOf("Windows NT 10.0") > 0)
+                {
+                    os = "Windows 10";
+                }
+                else
+                {
+                    os = "Inny";
+                }
+            }
+
+            <p>&copy; @DateTime.Now.Year — moja aplikacja platformy ASP.NET</p>
+            <p>Przeglądasz stronę z: @Request.Browser.Browser, wersja: @Request.Browser.Version, system: @os  </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
