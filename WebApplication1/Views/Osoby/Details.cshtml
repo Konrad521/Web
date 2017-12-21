@@ -7,6 +7,9 @@
 }
 
 <h2>@Model.ToString()</h2>
+@if (!string.IsNullOrEmpty(Model.Zdjecie))
+{
+@Html.Img(Model.Zdjecie, 300, 300)
+}
 
-@Html.Img(Model.Zdjecie,300,300)
-
+@Html.ActionLink("Generuj PDF", "Pdf", new {IDOsoby = Model.ID })

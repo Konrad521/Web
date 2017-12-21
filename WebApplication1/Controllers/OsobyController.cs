@@ -9,6 +9,7 @@ using WebApplication1.Extensions;
 using System.ComponentModel.DataAnnotations;
 using System.Data.OleDb;
 using System.Data;
+using Rotativa;
 
 namespace WebApplication1.Controllers
 {
@@ -220,7 +221,10 @@ namespace WebApplication1.Controllers
             }
         }
 
-        
+        public ActionResult Pdf(int IDOsoby)
+        {
+            return new ActionAsPdf("Details", new { IDOsoby = IDOsoby });
+        }
 
     }
 }

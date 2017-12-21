@@ -53,5 +53,23 @@ namespace WebApplication1.Controllers
 
             return Json(new { kwota = result },JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult BitBay()
+        {
+            using (WebClient client = new WebClient())
+            {
+                var url = "https://bitbay.net/API/Public/BTCPLN/orderbook.json";
+
+                var stream = client.OpenRead(url);
+                StreamReader reader = new StreamReader(stream);
+                string s = reader.ReadToEnd();
+
+                BitBayAPIModel model = JsonConvert.DeserializeObject<BitBayAPIModel>(s);
+
+                decimal last = model.bids[0][0];
+
+                return Json(new { price = last }, JsonRequestBehavior.AllowGet);
+            }
+            }
     }
 }

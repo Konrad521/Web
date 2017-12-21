@@ -36,3 +36,9 @@
 })
 <input id="pln" readonly="true" />PLN <input type="button" value="Przelicz" onclick="przelicz()" />
 
+<div>Aktualna cena BTC: <span id="pricespan"></span></div>
+
+<script>
+    setInterval(function () { GetPrice(); }, 3000);
+</script>
+
