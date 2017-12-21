@@ -15,7 +15,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult SetColor(string color)
         {
-            //komentarz
+            //komentarz 1111
             Session["color"] = color;   
 
             return RedirectToAction("Index");
